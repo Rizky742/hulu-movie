@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./elements/Header";
+import Nav from "./elements/Nav";
+import Results from "./elements/Results";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
+ 
+  // const [movies, setMovie] = useState([]);
+  // const { genre } = useParams();
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const request = await axios.get(`https://api.themoviedb.org/3${requests[genre.url]}`)
+  //     setMovie(request.data.results)
+  //   }
+  //   fetchData()
+  // }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        {/* Header */}
+        <Header />
+        {/* Nav */}
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Results />} />
+          <Route path="/:genre" element={<Results />} />
+        </Routes>
+        
+      </Router>
+
     </div>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   const genre = context.query.genre;
+
+//   const request = await fetch(`https://api.themoviedb.org/3${requests.fetchTrending.url}`
+//     ).then(res => res.json());
+
+//     return {
+//       props: {
+//         results: 
+//       }
+//     }
+// }
 
 export default App;
